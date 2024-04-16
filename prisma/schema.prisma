@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+  userType      String
+  email         String         @unique
+  phoneNumber   String
+  balance       Float
+  deleted       Boolean        @default(false)
+  employer      Employer?
+  paymentMethod PaymentMethod?
+  professional  Professional?
+  staff         Staff?
+}
+
+model Staff {
+  id          Int    @id @default(autoincrement())
+  userId      Int    @unique
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  user        User   @relation(fields: [userId], references: [id])
+}
+
+model Professional {
+  id              Int     @id @default(autoincrement())
+  userId          Int     @unique
+  firstName       String
+  lastName        String
+  degreeName      String
+  institutionName String
+  monthComplete   Int
+  yearComplete    Int
+  streetAddress   String
+  city            String
+  state           String
+  zip             String
+  qualifications  String
+  approved        Boolean
+  matching        Boolean
+  user            User    @relation(fields: [userId], references: [id])
+}
+
+model Employer {
+  id            Int     @id @default(autoincrement())
+  userId        Int     @unique
+  companyName   String
+  streetAddress String
+  city          String
+  state         String
+  zip           String
+  firstName     String
+  lastName      String
+  approved      Boolean
+  user          User    @relation(fields: [userId], references: [id])
+}
+
+model Job {
+  id               Int      @id @default(autoincrement())
+  employerId       Int
+  companyName     String
+  positionName     String
+  contactFirstName String
+  contactLastName  String
+  contactPhone     String
+  contactEmail     String
+  startDate        DateTime
+  endDate          DateTime
+  startTime        DateTime
+  endTime          DateTime
+  payment          Float
+  qualifications   String
+  matched          String @default("")
+}
+
+model PaymentMethod {
+  id         Int    @id @default(autoincrement())
+  userId     Int    @unique
+  cardNumber String
+  expDate    String
+  cvv        String
+  zip        String
+  cardType   String
+  user       User   @relation(fields: [userId], references: [id])
+}
+
