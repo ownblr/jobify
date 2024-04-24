@@ -23,15 +23,20 @@ export async function POST(req: NextRequest, res: NextResponse) {
 }
 
 export async function PATCH(req: NextRequest, res : NextResponse) {
-    const { id, payment } = await req.json();
+    const { id, payment, balanceDue } = await req.json();
+    const paymentInt = parseInt(payment);
+    const balanceDueDate = new Date(balanceDue);
+
     const user = await prisma.user.update({
         where: {
             id
         },
         data: {
             balance: {
-                increment: payment
-            }
+                increment: paymentInt
+            },
+            balanceDue : balanceDueDate
+
         }
     })
     return NextResponse.json(user);

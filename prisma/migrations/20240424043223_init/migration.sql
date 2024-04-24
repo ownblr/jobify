@@ -7,6 +7,7 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "balance" REAL NOT NULL,
+    "balanceDue" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted" BOOLEAN NOT NULL DEFAULT false
 );
 
@@ -61,6 +62,7 @@ CREATE TABLE "Job" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "employerId" INTEGER NOT NULL,
     "companyName" TEXT NOT NULL,
+    "companyJobId" TEXT NOT NULL,
     "positionName" TEXT NOT NULL,
     "contactFirstName" TEXT NOT NULL,
     "contactLastName" TEXT NOT NULL,

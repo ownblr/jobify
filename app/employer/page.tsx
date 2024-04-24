@@ -5,7 +5,7 @@ import Navigation from '../Components/Navigation/Navigation';
 import CreateJob from '../Components/EmployerDashboardComponents/CreateJob';
 import CurrentJobs from "../Components/EmployerDashboardComponents/CurrentJobs";
 import EditEmployerAccount from '../Components/EmployerDashboardComponents/EditEmployerAccount';
-import EmployerPayment from '../Components/EmployerDashboardComponents/EmployerPayment';
+import Payment from '../Components/ProfessionalDashboardComponents/Payment';
 import { styled } from "styled-components"
 
 const EmployerDashboard = () => {
@@ -21,10 +21,10 @@ const EmployerDashboard = () => {
       <Navigation accountName="John Smith" />
       <div className="flex">
         <Sidebar onComponentChange={handleComponentChange}/>
-        <main className="flex-grow ml-10 p-4 pb-4 bg-white">
+        <main className="flex-grow ml-10 p-4 pb-4 bg-gray-700">
             <DashboardContainer>
             {activeComponent === 'CurrentJobs' && <CurrentJobs />}
-            {activeComponent === 'EmployerPayment' && <EmployerPayment />}
+            {activeComponent === 'EmployerPayment' && <Payment />}
             {activeComponent === 'CreateJob' && <CreateJob onComponentChange={undefined} />}
             {activeComponent === 'EditEmployerAccount' && <EditEmployerAccount />}
             </DashboardContainer> 

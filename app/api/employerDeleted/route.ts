@@ -21,12 +21,18 @@ export async function DELETE(req: NextRequest, res: NextResponse ) {
     return NextResponse.json("employerd eleted");
 }
 
-export async function GET(req: NextRequest, res : NextResponse) {
-    const employer = await prisma.employer.findMany()
-    if (!employer) {
-        return new NextResponse(JSON.stringify({ error: "employer not found" }), { status: 404, headers: { 'Content-Type': 'application/json' } });
-    }
-    return NextResponse.json(employer);
+export async function GET(req: NextRequest, res: NextResponse) {
+    const employers = await prisma.user.findMany({
+        where: {
+            deleted: true,
+            userType: "employer"
+        }
+    });
+
+    return new NextResponse(JSON.stringify(employers), { 
+        status: 200, 
+        headers: { 'Content-Type': 'application/json' } 
+    });
 }
 
 export async function PATCH(req: NextRequest, res : NextResponse) {

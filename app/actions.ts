@@ -20,6 +20,12 @@ export async function logout() {
   revalidatePath("/");
 }
 
+export async function getUserID() {
+  "use server"
+  const session = await getSession();
+  return session.user.id;
+}
+
 export async function login(user : Object, account : Object) {
   "use server";
   const session = await getSession();

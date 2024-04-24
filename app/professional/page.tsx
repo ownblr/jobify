@@ -1,5 +1,4 @@
 "use client"
-import React from "react";
 import Sidebar from "../Components/ProfessionalDashboardComponents/Sidebar";
 import Navigation from "../Components/Navigation/Navigation";
 import JobPostings from "../Components/ProfessionalDashboardComponents/JobPostings";
@@ -7,6 +6,8 @@ import AccountSettings from "../Components/ProfessionalDashboardComponents/Accou
 import Payment from "../Components/ProfessionalDashboardComponents/Payment";
 import MatchedJobs from "../Components/ProfessionalDashboardComponents/MatchedJobs";
 import { styled } from "styled-components";
+import React from "react";
+import { get } from "http";
 
 const ProfessionalDashboard = () => {
   const [activeComponent, setActiveComponent] = React.useState("JobPostings");
@@ -20,12 +21,10 @@ const ProfessionalDashboard = () => {
       <Navigation accountName="John Smith" />
       <div className="flex">
         <Sidebar onComponentChange={handleComponentChange} />
-        <main className="flex-grow ml-10 p-4 pb-4 bg-gray-700">
+        <main className="flex-grow ml-10 p-4 pb-4 bg-gray-800">
           <DashboardContainer>
             {activeComponent === "JobPostings" && <JobPostings />}
-            {activeComponent === "CurrentApplications" && (
-              <MatchedJobs />
-            )}
+            {activeComponent === "CurrentApplications" && (<MatchedJobs/>)}
             {activeComponent === "AccountSettings" && <AccountSettings />}
             {activeComponent === "Payment" && <Payment />}
           </DashboardContainer>

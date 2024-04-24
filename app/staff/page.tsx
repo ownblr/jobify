@@ -3,8 +3,8 @@ import React from 'react';
 import Sidebar from '../Components/StaffDashboardComponents/Sidebar';
 
 import Navigation from '../Components/Navigation/Navigation';
-import EmployerList from '../Components/StaffDashboardComponents/EmployerList';
-import ProfessionalList from '../Components/StaffDashboardComponents/ProfessionalList';
+import Employers from '../Components/StaffDashboardComponents/Employers';
+import Professionals from '../Components/StaffDashboardComponents/Professionals';
 import EmployerRequest from '../Components/StaffDashboardComponents/EmployerRequest';
 import ProfessionalRequest from '../Components/StaffDashboardComponents/ProfessionalRequest';
 import MatchingProcess from '../Components/StaffDashboardComponents/MatchingProcess';
@@ -24,10 +24,10 @@ const StaffDashboard = () => {
           <Navigation accountName="John Smith" />
           <div className="flex">
             <Sidebar onComponentChange={handleComponentChange}/>
-            <main className="flex-grow ml-10 p-4 pb-4 bg-gray-500">
+            <main className="flex-grow ml-10 p-4 pb-4 bg-gray-700">
             <DashboardContainer>
-            {activeComponent === 'EmployerList' && <EmployerList />}
-            {activeComponent === 'ProfessionalList' && <ProfessionalList/>}
+            {activeComponent === 'EmployerList' && <Employers />}
+            {activeComponent === 'ProfessionalList' && <Professionals/>}
             {activeComponent === 'EmployerRequest' && <EmployerRequest/>}
             {activeComponent === 'ProfessionalRequest' && <ProfessionalRequest/>}
             {activeComponent === 'MatchingProcess' && <MatchingProcess/>}

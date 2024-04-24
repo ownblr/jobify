@@ -5,7 +5,8 @@ const Payment = () => {
   const [balance, setBalance] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [paymentAmount, setPaymentAmount] = useState(0);
-
+  const [dueDate, setDueDate] = useState();
+  
 
   useEffect(() => {
     try {
@@ -14,6 +15,8 @@ const Payment = () => {
         const sessionData = await data.json();
         setSession(sessionData);
         setBalance(sessionData.user.balance);
+        const date = new Date(sessionData.user.balanceDue);
+        setDueDate(date.toDateString());
       };
       getSession();
     } catch (error) {
@@ -51,6 +54,7 @@ const Payment = () => {
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Payment</h1>
       <p>Balance: {balance}</p>
+      <p>Due Date: {dueDate}</p>
       <div className="mt-4">
         <input
           type="number"

@@ -66,12 +66,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 }
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(req: NextRequest, response: NextResponse) {
   const data = await prisma.employer.findMany();
-  return new NextResponse(JSON.stringify(data), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  console.log(JSON.stringify(data))
+  return NextResponse.json(data);
 }
 
 export async function PATCH(req: NextRequest, response : NextResponse) {

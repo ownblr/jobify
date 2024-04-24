@@ -27,7 +27,8 @@ export async function POST(req: NextRequest, res : NextResponse) {
     zip,
     qualifications
   } = await req.json(); 
-
+  const monthInt = parseInt(monthComplete)
+  const yearInt = parseInt(yearComplete)
   try {
     const result = await prisma.$transaction(async (prisma) => {
       const user = await prisma.user.create({
@@ -40,8 +41,9 @@ export async function POST(req: NextRequest, res : NextResponse) {
           balance: 0,
         },
       });
+      
       const qualifcationsString = JSON.stringify(qualifications)
-
+      console.log(qualifcationsString)
       const professional = await prisma.professional.create({
         data: {
           id : user.id,
@@ -50,8 +52,8 @@ export async function POST(req: NextRequest, res : NextResponse) {
           lastName,
           degreeName,
           institutionName,
-          monthComplete,
-          yearComplete,
+          monthComplete : monthInt,
+          yearComplete : yearInt,
           streetAddress,
           city,
           state,
@@ -76,7 +78,8 @@ export async function POST(req: NextRequest, res : NextResponse) {
 
 export async function GET(req: NextRequest, response: NextResponse) {
   const data = await prisma.professional.findMany();
-  return new NextResponse(JSON.stringify(data), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  console.log(JSON.stringify(data))
+  return NextResponse.json(data);
 }
 
 export async function PATCH(req: NextRequest, response : NextResponse) {

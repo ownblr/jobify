@@ -15,6 +15,7 @@ model User {
   email         String         @unique
   phoneNumber   String
   balance       Float
+  balanceDue    DateTime      @default(now())
   deleted       Boolean        @default(false)
   employer      Employer?
   paymentMethod PaymentMethod?
@@ -69,6 +70,7 @@ model Job {
   id               Int      @id @default(autoincrement())
   employerId       Int
   companyName     String
+  companyJobId    String
   positionName     String
   contactFirstName String
   contactLastName  String

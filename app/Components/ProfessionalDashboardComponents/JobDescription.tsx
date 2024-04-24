@@ -1,21 +1,15 @@
 import React from 'react';
 import JobQualifcation from './JobQualifcation';
 
-const Qualifcations =
-  [
-    {
-      "category": "Software Engineering",
-      "keywords": "Java, Spring Boot, Microservices"
-    },
-    {
-      "category": "Project Management",
-      "keywords": "Agile, Scrum, Kanban"
-    }
-  ]
-  
+
+
 
 const JobDescription = ({ Job }) => {
-
+  const Qualifcations = JSON.parse(Job.qualifications);
+  const employerId = Job.companyJobId;
+  const contactName = `${Job.contactFirstName} ${Job.contactLastName}`;
+  const contactPhone = Job.contactPhone;
+  const contactEmail = Job.contactEmail;
   const startDate = new Date(Job.startDate).toLocaleDateString();
   const endDate = new Date(Job.endDate).toLocaleDateString();
   const startTime = new Date(Job.startTime).toLocaleTimeString('en-US', {
@@ -29,8 +23,8 @@ const JobDescription = ({ Job }) => {
   });  return (
     <div className="mt-5">
       <div>
-        <h3 className="text-3xl font-bold text-center">{Job.positionName}</h3>
         <h3 className="text-3xl font-bold text-center">{Job.companyName}</h3>
+        <h3 className="text-2xl mt-5 font-bold text-center">{Job.positionName}</h3>
       </div>
       <div className="m-5 ml-10 mr-10 mb-0 flex text-l font-semibold justify-between">
         <p>${Job.payment} / Hour</p>
@@ -39,6 +33,14 @@ const JobDescription = ({ Job }) => {
       <div className="m-5 ml-10 mr-10 mt-3 flex text-l font-semibold justify-between">
         <p>{startTime} to {endTime}</p>
         <p>End Date: {endDate}</p>
+      </div>
+      <div className="m-5 ml-10 mr-10 mb-0 flex text-l font-semibold justify-between">
+        <p>{contactName}</p>
+        <p>{employerId}</p>
+      </div>
+      <div className="m-5 ml-10 mr-10 mb-0 flex text-l font-semibold justify-between">
+        <p>{contactPhone}</p>
+        <p>{contactEmail}</p>
       </div>
       <div className="m-5 ml-10 mr-10 mt-3">
         <h4 className="text-xl font-semibold mb-2">Qualifications:</h4>

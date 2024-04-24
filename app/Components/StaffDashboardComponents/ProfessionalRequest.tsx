@@ -43,6 +43,12 @@ const ProfessionalRequest = () => {
     });
     const data = await response.json();
     setMessage(data.message);
+    setProfessionals(professionals.filter(professional => professional.id !== currentProfessional.id));
+    if (professionals.length > 1) {
+      setCurrentProfessional(professionals[1]);
+    } else {
+      setCurrentProfessional(null);
+    }
   }
 
   const handleDecline = async () => {
@@ -57,9 +63,13 @@ const ProfessionalRequest = () => {
     });
     const data = await response.json();
     setMessage(data.message);
+    if (professionals.length > 1) {
+      setCurrentProfessional(professionals[1]);
+    } else {
+      setCurrentProfessional(null);
+    }
   }
 
-  // Show a loading message or spinner while the data is being fetched
   if (isLoading) {
     return <div>Loading...</div>;
   }

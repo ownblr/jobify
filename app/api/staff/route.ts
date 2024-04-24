@@ -43,3 +43,22 @@ export async function POST(req: NextRequest, res : NextResponse) {
     });
     return NextResponse.json(staff);
 }
+
+export async function GET(req: NextRequest, res: NextResponse) {
+    const staff = await prisma.staff.findMany();
+    return NextResponse.json(staff);
+}
+
+export async function PATCH(req: NextRequest, res: NextResponse) {
+    const { id, email, phoneNumber } = await req.json();
+    const staff = await prisma.staff.update({
+        where: {
+            id
+        },
+        data: {
+            email,
+            phoneNumber
+        }
+    });
+    return NextResponse.json(staff);
+}

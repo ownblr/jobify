@@ -43,6 +43,7 @@ const EmployerRequests = () => {
     });
     const data = await response.json();
     setMessage(data.message);
+    setEmployers(employers.filter(employer => employer.id !== currentEmployer.id));
   }
 
   const handleDecline = async () => {
