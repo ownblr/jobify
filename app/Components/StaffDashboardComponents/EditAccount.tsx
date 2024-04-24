@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -5,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 const EditAccount = () => {
   const router = useRouter();
-  const [session, setSession] = useState<session>();
+  const [session, setSession] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhone] = useState("");

@@ -234,8 +234,8 @@ const EditAccount = () => {
                 <td className="pr-2">Month Completed:</td>
                 <td>
                   <input
-                    type="text"
-                    placeholder={session.account.monthComplete}
+                    type="number"
+                    placeholder={String(session.account.monthComplete)}
                     onChange={(e) =>
                       handleInputChange("monthComplete", e.target.value)
                     }
@@ -247,8 +247,8 @@ const EditAccount = () => {
                 <td className="pr-2">Year Completed:</td>
                 <td>
                   <input
-                    type="text"
-                    placeholder={session.account.yearComplete}
+                    type="number"
+                    placeholder={String(session.account.yearComplete)}
                     onChange={(e) =>
                       handleInputChange("yearComplete", e.target.value)
                     }

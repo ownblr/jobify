@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const ChangePasswordProf = () => {
   const [currentPassword, setCurrentPassword] = useState(""); // Initialize currentPassword state
   const [newPassword, setNewPassword] = useState("");
   const [retypeNewPassword, setRetypeNewPassword] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleCurrentPasswordChange = (e) => {
     setCurrentPassword(e.target.value);
@@ -43,12 +43,12 @@ const ChangePasswordProf = () => {
     }
 
     // Navigate to the /staff route after submitting
-    navigate("/staff");
+    router.push("/staff");
   };
 
   const handleCancel = () => {
-    // Navigate back to /staff when cancel is clicked
-    navigate("/staff");
+    // router.push back to /staff when cancel is clicked
+    router.push("/staff");
   };
 
   return (

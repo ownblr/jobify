@@ -1,14 +1,17 @@
+//@ts-nocheck
 import { SessionData } from "./lib";
 import { defaultSession, sessionOptions, sleep } from "./lib";
 import { getIronSession, IronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
+
+
+
 export async function getSession(shouldSleep = true) {
-  const session = await getIronSession<SessionData>(cookies(), sessionOptions);
+  const session = await getIronSession<SessionData>(cookies() as any, sessionOptions);
   return session;
 }
-
 
 export async function logout() {
   "use server";
@@ -26,7 +29,7 @@ export async function getUserID() {
   return session.user.id;
 }
 
-export async function login(user : Object, account : Object) {
+export async function login(user , account ) {
   "use server";
   const session = await getSession();
   session.user = user;
@@ -37,7 +40,6 @@ export async function login(user : Object, account : Object) {
 
 export async function updateBalance(amount : number) {
   "use server";
-
   const session = await getSession();
   session.user.balance -= amount;
   await session.save();

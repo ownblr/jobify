@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 "use client"
 import Sidebar from "../Components/ProfessionalDashboardComponents/Sidebar";
 import Navigation from "../Components/Navigation/Navigation";

@@ -1,5 +1,5 @@
 import React from 'react'
-import EditAccount from './EditAccount.tsx'
+import EditAccount from './EditAccount'
 
 const AccountSettings = () => {
   return (

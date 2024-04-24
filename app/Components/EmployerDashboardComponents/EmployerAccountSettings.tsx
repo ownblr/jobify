@@ -1,5 +1,5 @@
 import React from 'react'
-import EditEmployerAccount from './EditEmployerAccount.tsx'
+import EditEmployerAccount from './EditEmployerAccount'
 
 const EmployerAccountSettings = () => {
   return (

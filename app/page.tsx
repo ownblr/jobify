@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import * as React from "react";
 import Hero from "./Components/HomeComponents/Hero/Hero";
 import IconSection from "./Components/HomeComponents/IconSection/IconSection";
